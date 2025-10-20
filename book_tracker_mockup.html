@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookTrack - Design Mockups</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-brown: #8B4513;
+            --secondary-tan: #D4A574;
+            --accent-green: #2C5F2D;
+            --bg-cream: #F5F1E8;
+            --text-dark: #2B2B2B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .mockup-selector {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .mockup-selector h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-brown);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            font-family: 'Roboto', sans-serif;
+            padding: 12px 24px;
+            background: var(--bg-cream);
+            border: 2px solid var(--primary-brown);
+            color: var(--primary-brown);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .tab-btn:hover {
+            background: var(--secondary-tan);
+        }
+
+        .tab-btn.active {
+            background: var(--primary-brown);
+            color: white;
+        }
+
+        .mockup-frame {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            display: none;
+        }
+
+        .mockup-frame.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .browser-chrome {
+            background: #e8e8e8;
+            padding: 12px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot.red { background: #ff5f57; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #28ca42; }
+
+        .url-bar {
+            flex: 1;
+            background: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #666;
+            margin-left: 10px;
+        }
+
+        .page-content {
+            background: var(--bg-cream);
+            min-height: 600px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: var(--primary-brown);
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-tan);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 95, 45, 0.8), rgba(139, 69, 19, 0.8)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23D4A574" width="1200" height="400"/><text x="50%25" y="50%25" font-size="120" fill="%238B4513" opacity="0.1" text-anchor="middle" dominant-baseline="middle" font-family="serif">📚</text></svg>');
+            color: white;
+            padding: 100px 40px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            font-family: 'Roboto', sans-serif;
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-block;
+            margin: 0 10px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--secondary-tan);
+            color: var(--primary-brown);
+        }
+
+        .btn-primary:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-brown);
+        }
+
+        /* Features */
+        .features {
+            padding: 60px 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-brown);
+            margin-bottom: 10px;
+        }
+
+        /* Book Grid */
+        .search-bar {
+            background: white;
+            padding: 30px 40px;
+            margin: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto;
+            gap: 15px;
+            align-items: end;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--primary-brown);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--secondary-tan);
+            border-radius: 6px;
+            font-family: 'Lora', serif;
+        }
+
+        .book-grid {
+            padding: 20px 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .book-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .book-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .book-cover {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--secondary-tan), var(--primary-brown));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+        }
+
+        .book-info {
+            padding: 20px;
+        }
+
+        .book-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-brown);
+            margin-bottom: 8px;
+        }
+
+        .book-author {
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .genre-badge {
+            display: inline-block;
+            background: var(--accent-green);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .added-by {
+            font-size: 12px;
+            color: #999;
+            margin-top: 10px;
+        }
+
+        /* Dashboard */
+        .dashboard {
+            padding: 40px;
+        }
+
+        .dashboard-header {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .welcome h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-brown);
+            margin-bottom: 10px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .book-table {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: var(--bg-cream);
+            padding: 15px;
+            text-align: left;
+            font-family: 'Roboto', sans-serif;
+            color: var(--primary-brown);
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+
+        .btn-edit {
+            background: var(--secondary-tan);
+            color: var(--primary-brown);
+        }
+
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+        }
+
+        /* Forms */
+        .form-container {
+            max-width: 500px;
+            margin: 60px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .form-container h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-brown);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .footer {
+            background: var(--primary-brown);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .book-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-header {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="mockup-selector">
+            <h1>📚 BookTrack Design Mockups</h1>
+            <div class="tab-buttons">
+                <button class="tab-btn active" data-page="home">Home Page</button>
+                <button class="tab-btn" data-page="library">Public Library</button>
+                <button class="tab-btn" data-page="dashboard">My Dashboard</button>
+                <button class="tab-btn" data-page="login">Login</button>
+                <button class="tab-btn" data-page="add-book">Add Book</button>
+            </div>
+        </div>
+
+        <!-- Home Page Mockup -->
+        <div class="mockup-frame active" id="home">
+            <div class="browser-chrome">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+                <div class="url-bar">https://booktrack.onrender.com</div>
+            </div>
+            <div class="page-content">
+                <nav class="navbar">
+                    <div class="logo">📚 BookTrack</div>
+                    <div class="nav-links">
+                        <a href="#">Home</a>
+                        <a href="#">Public Library</a>
+                        <a href="#">Login</a>
+                        <a href="#">Register</a>
+                    </div>
+                </nav>
+
+                <div class="hero">
+                    <h1>Your Personal Digital Library</h1>
+                    <p>Track your reading journey, organize your collection, and discover new books</p>
+                    <a href="#" class="btn btn-primary">Get Started</a>
+                    <a href="#" class="btn btn-outline">Browse Public Library</a>
+                </div>
+
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon">📖</div>
+                        <h3>Track Your Collection</h3>
+                        <p>Keep a digital record of all your books with detailed information and personal notes</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔍</div>
+                        <h3>Never Forget</h3>
+                        <p>Easily search and filter your collection to find exactly what you're looking for</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌍</div>
+                        <h3>Discover Books</h3>
+                        <p>Browse books from our community and get inspired for your next read</p>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <p>&copy; 2025 BookTrack | Made with ❤️ for book lovers</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Public Library Mockup -->
+        <div class="mockup-frame" id="library">
+            <div class="browser-chrome">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+                <div class="url-bar">https://booktrack.onrender.com/library</div>
+            </div>
+            <div class="page-content">
+                <nav class="navbar">
+                    <div class="logo">📚 BookTrack</div>
+                    <div class="nav-links">
+                        <a href="#">Home</a>
+                        <a href="#">Public Library</a>
+                        <a href="#">Login</a>
+                        <a href="#">Register</a>
+                    </div>
+                </nav>
+
+                <div class="search-bar">
+                    <h2 style="font-family: 'Playfair Display', serif; color: var(--primary-brown); margin-bottom: 20px;">🔍 Search Public Library</h2>
+                    <form class="search-form">
+                        <div class="form-group">
+                            <label>Search</label>
+                            <input type="text" class="form-control" placeholder="Search by title or author...">
+                        </div>
+                        <div class="form-group">
+                            <label>Genre</label>
+                            <select class="form-control">
+                                <option>All Genres</option>
+                                <option>Fiction</option>
+                                <option>Non-Fiction</option>
+                                <option>Mystery</option>
+                                <option>Sci-Fi</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Author</label>
+                            <select class="form-control">
+                                <option>All Authors</option>
+                                <option>J.K. Rowling</option>
+                                <option>Stephen King</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>&nbsp;</label>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Search</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="book-grid">
+                    <div class="book-card">
+                        <div class="book-cover">📕</div>
+                        <div class="book-info">
+                            <div class="book-title">The Great Gatsby</div>
+                            <div class="book-author">F. Scott Fitzgerald</div>
+                            <span class="genre-badge">Fiction</span>
+                            <div class="added-by">Added by: bookworm42</div>
+                        </div>
+                    </div>
+
+                    <div class="book-card">
+                        <div class="book-cover">📘</div>
+                        <div class="book-info">
+                            <div class="book-title">1984</div>
+                            <div class="book-author">George Orwell</div>
+                            <span class="genre-badge">Sci-Fi</span>
+                            <div class="added-by">Added by: reader123</div>
+                        </div>
+                    </div>
+
+                    <div class="book-card">
+                        <div class="book-cover">📗</div>
+                        <div class="book-info">
+                            <div class="book-title">To Kill a Mockingbird</div>
+                            <div class="book-author">Harper Lee</div>
+                            <span class="genre-badge">Fiction</span>
+                            <div class="added-by">Added by: litlover</div>
+                        </div>
+                    </div>
+
+                    <div class="book-card">
+                        <div class="book-cover">📙</div>
+                        <div class="book-info">
+                            <div class="book-title">Sapiens</div>
+                            <div class="book-author">Yuval Noah Harari</div>
+                            <span class="genre-badge">Non-Fiction</span>
+                            <div class="added-by">Added by: historygeek</div>
+                        </div>
+                    </div>
+
+                    <div class="book-card">
+                        <div class="book-cover">📕</div>
+                        <div class="book-info">
+                            <div class="book-title">The Hobbit</div>
+                            <div class="book-author">J.R.R. Tolkien</div>
+                            <span class="genre-badge">Fantasy</span>
+                            <div class="added-by">Added by: fantasyreader</div>
+                        </div>
+                    </div>
+
+                    <div class="book-card">
+                        <div class="book-cover">📘</div>
+                        <div class="book-info">
+                            <div class="book-title">Pride and Prejudice</div>
+                            <div class="book-author">Jane Austen</div>
+                            <span class="genre-badge">Romance</span>
+                            <div class="added-by">Added by: classicfan</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <p>&copy; 2025 BookTrack | Made with ❤️ for book lovers</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Mockup -->
+        <div class="mockup-frame" id="dashboard">
+            <div class="browser-chrome">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+                <div class="url-bar">https://booktrack.onrender.com/dashboard</div>
+            </div>
+            <div class="page-content">
+                <nav class="navbar">
+                    <div class="logo">📚 BookTrack</div>
+                    <div class="nav-links">
+                        <a href="#">Home</a>
+                        <a href="#">Public Library</a>
+                        <a href="#">My Collection</a>
+                        <a href="#">Logout</a>
+                    </div>
+                </nav>
+
+                <div class="dashboard">
+                    <div class="dashboard-header">
+                        <div class="welcome">
+                            <h2>Welcome back, John! 👋</h2>
+                            <p>You have 12 books in your collection</p>
+                        </div>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <div class="stat-number">12</div>
+                                <div class="stat-label">Total Books</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">5</div>
+                                <div class="stat-label">Genres</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary">+ Add New Book</button>
+                    </div>
+
+                    <div class="book-table">
+                        <h3 style="font-family: 'Playfair Display', serif; color: var(--primary-brown); margin-bottom: 20px;">📚 My Books</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Author</th>
+                                    <th>Genre</th>
+                                    <th>Date Added</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>The Catcher in the Rye</strong></td>
+                                    <td>J.D. Salinger</td>
+                                    <td><span class="genre-badge">Fiction</span></td>
+                                    <td>Oct 15, 2025</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn btn-edit btn-sm">Edit</button>
+                                            <button class="btn btn-delete btn-sm">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Atomic Habits</strong></td>
+                                    <td>James Clear</td>
+                                    <td><span class="genre-badge">Self-Help</span></td>
+                                    <td>Oct 10, 2025</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn btn-edit btn-sm">Edit</button>
+                                            <button class="btn btn-delete btn-sm">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Dune</strong></td>
+                                    <td>Frank Herbert</td>
+                                    <td><span class="genre-badge">Sci-Fi</span></td>
+                                    <td>Oct 5, 2025</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn btn-edit btn-sm">Edit</button>
+                                            <button class="btn btn-delete btn-sm">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>The Silent Patient</strong></td>
+                                    <td>Alex Michaelides</td>
+                                    <td><span class="genre-badge">Mystery</span></td>
+                                    <td>Sep 28, 2025</td>
+                                    <td>
+                                        <div class="action-btns">
+                                            <button class="btn btn-edit btn-sm">Edit</button>
+                                            <button class="btn btn-delete btn-sm">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <p>&copy; 2025 BookTrack | Made with ❤️ for book lovers</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Mockup -->
+        <div class="mockup-frame" id="login">
+            <div class="browser-chrome">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+                <div class="url-bar">https://booktrack.onrender.com/login</div>
+            </div>
+            <div class="page-content">
+                <nav class="navbar">
+                    <div class="logo">📚 BookTrack</div>
+                    <div class="nav-links">
+                        <a href="#">Home</a>
+                        <a href="#">Public Library</a>
+                        <a href="#">Login</a>
+                        <a href="#">Register</a>
+                    </div>
+                </nav>
+
+                <div class="form-container">
+                    <h2>📖 Login to Your Library</h2>
+                    <form>
+                        <div class="form-group">
+                            <label>Email or Username</label>
+                            <input type="text" class="form-control" placeholder="Enter your email or username">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" placeholder="Enter your password">
+                        </div>
+                        <div class="form-group" style="display: flex; align-items: center; gap: 8px;">
+                            <input type="checkbox" id="remember">
+                            <label for="remember" style="margin: 0;">Remember me</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 15px;">Login</button>
+                        <button type="button" class="btn btn-outline" style="width: 100%; background: #333; color: white; border: none;">
+                            <span style="margin-right: 8px;">🐙</span> Login with GitHub
+                        </button>
+                    </form>
+                    <p style="text-align: center; margin-top: 20px; color: #666;">
+                        Don't have an account? <a href="#" style="color: var(--primary-brown); font-weight: 600;">Register here</a>
+                    </p>
+                </div>
+
+                <div class="footer">
+                    <p>&copy; 2025 BookTrack | Made with ❤️ for book lovers</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Book Mockup -->
+        <div class="mockup-frame" id="add-book">
+            <div class="browser-chrome">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+                <div class="url-bar">https://booktrack.onrender.com/books/add</div>
+            </div>
+            <div class="page-content">
+                <nav class="navbar">
+                    <div class="logo">📚 BookTrack</div>
+                    <div class="nav-links">
+                        <a href="#">Home</a>
+                        <a href="#">Public Library</a>
+                        <a href="#">My Collection</a>
+                        <a href="#">Logout</a>
+                    </div>
+                </nav>
+
+                <div class="form-container" style="max-width: 600px;">
+                    <h2>📚 Add New Book</h2>
+                    <form>
+                        <div class="form-group">
+                            <label>Title *</label>
+                            <input type="text" class="form-control" placeholder="Enter book title" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Author *</label>
+                            <input type="text" class="form-control" placeholder="Enter author name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Genre *</label>
+                            <select class="form-control" required>
+                                <option value="">Select a genre</option>
+                                <option>Fiction</option>
+                                <option>Non-Fiction</option>
+                                <option>Mystery</option>
+                                <option>Thriller</option>
+                                <option>Romance</option>
+                                <option>Sci-Fi</option>
+                                <option>Fantasy</option>
+                                <option>Biography</option>
+                                <option>Self-Help</option>
+                                <option>History</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>ISBN</label>
+                            <input type="text" class="form-control" placeholder="Optional">
+                        </div>
+                        <div class="form-group">
+                            <label>Publication Year</label>
+                            <input type="number" class="form-control" placeholder="e.g., 2023">
+                        </div>
+                        <div class="form-group">
+                            <label>Personal Notes</label>
+                            <textarea class="form-control" placeholder="Your thoughts about this book..."></textarea>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <button type="submit" class="btn btn-primary" style="flex: 1;">Add Book</button>
+                            <button type="button" class="btn btn-outline" style="flex: 1; background: #6c757d; color: white; border: none;">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="footer">
+                    <p>&copy; 2025 BookTrack | Made with ❤️ for book lovers</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tabs = document.querySelectorAll('.tab-btn');
+        const frames = document.querySelectorAll('.mockup-frame');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetPage = tab.dataset.page;
+                
+                tabs.forEach(t => t.classList.remove('active'));
+                frames.forEach(f => f.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.getElementById(targetPage).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
