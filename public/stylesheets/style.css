@@ -1,8 +1,140 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+:root {
+    --primary-brown: #8B4513;
+    --secondary-tan: #D4A574;
+    --accent-green: #2C5F2D;
+    --bg-cream: #F5F1E8;
+    --text-dark: #2B2B2B;
 }
 
-a {
-  color: #00B7FF;
+body {
+    font-family: 'Lora', serif;
+    background-color: var(--bg-cream);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary-brown);
+}
+
+/* Navigation */
+.bg-primary-brown {
+    background-color: var(--primary-brown) !important;
+}
+
+.navbar-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-brown);
+    border-color: var(--primary-brown);
+    font-family: 'Roboto', sans-serif;
+}
+
+.btn-primary:hover {
+    background-color: #6D3410;
+    border-color: #6D3410;
+}
+
+.btn-secondary {
+    background-color: var(--accent-green);
+    border-color: var(--accent-green);
+}
+
+/* Cards */
+.book-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+}
+
+.book-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.book-cover-placeholder {
+    height: 200px;
+    background: linear-gradient(135deg, var(--secondary-tan), var(--primary-brown));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+}
+
+.genre-badge {
+    background-color: var(--accent-green);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-family: 'Roboto', sans-serif;
+    display: inline-block;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--primary-brown);
+    color: white;
+    margin-top: auto;
+}
+
+.footer a {
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer a:hover {
+    color: var(--secondary-tan) !important;
+}
+
+/* Forms */
+.form-control:focus {
+    border-color: var(--secondary-tan);
+    box-shadow: 0 0 0 0.2rem rgba(212, 165, 116, 0.25);
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(rgba(44, 95, 45, 0.8), rgba(139, 69, 19, 0.8)),
+                url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1200') center/cover;
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero-section h1 {
+    color: white;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Delete Confirmation Modal */
+.modal-content {
+    border-radius: 12px;
+}
+
+.modal-header {
+    background-color: var(--bg-cream);
+    border-bottom: 2px solid var(--secondary-tan);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
 }
