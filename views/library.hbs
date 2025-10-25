@@ -1,0 +1,92 @@
+<div class="container my-4">
+    <h1 class="text-center mb-4">
+        <i class="fas fa-book-reader"></i> Public Library
+    </h1>
+    <p class="text-center text-muted mb-5">
+        Browse books from our community of readers
+    </p>
+
+    <!-- Search and Filter Form -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <form action="/library" method="GET" class="row g-3">
+                <div class="col-md-4">
+                    <label for="search" class="form-label">Search</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="search" 
+                        name="q" 
+                        placeholder="Search by title or author..." 
+                        value="{{searchQuery}}"
+                    >
+                </div>
+
+                <div class="col-md-3">
+                    <label for="genre" class="form-label">Genre</label>
+                    <select class="form-select" id="genre" name="genre">
+                        <option value="all" {{#if (eq selectedGenre 'all')}}selected{{/if}}>All Genres</option>
+                        {{#each genres}}
+                            <option value="{{this}}" {{#if (eq ../selectedGenre this)}}selected{{/if}}>
+                                {{this}}
+                            </option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="author" class="form-label">Author</label>
+                    <select class="form-select" id="author" name="author">
+                        <option value="all" {{#if (eq selectedAuthor 'all')}}selected{{/if}}>All Authors</option>
+                        {{#each authors}}
+                            <option value="{{this}}" {{#if (eq ../selectedAuthor this)}}selected{{/if}}>
+                                {{this}}
+                            </option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Books Grid -->
+    {{#if books.length}}
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5">
+            {{#each books}}
+                <div class="col">
+                    <div class="card book-card h-100">
+                        <div class="book-cover-placeholder">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{this.title}}</h5>
+                            <p class="card-text text-muted mb-2">by {{this.author}}</p>
+                            <span class="genre-badge">{{this.genre}}</span>
+                            {{#if this.notes}}
+                                <p class="card-text mt-3 small">{{this.notes}}</p>
+                            {{/if}}
+                        </div>
+                        <div class="card-footer bg-transparent border-top-0">
+                            <small class="text-muted">
+                                <i class="fas fa-user"></i> Added by: {{this.user.username}}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    {{else}}
+        <div class="text-center py-5">
+            <i class="fas fa-search fa-4x text-muted mb-3"></i>
+            <h4>No books found</h4>
+            <p class="text-muted">Try adjusting your search or filters</p>
+            <a href="/library" class="btn btn-primary">Clear Filters</a>
+        </div>
+    {{/if}}
+</div>

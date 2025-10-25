@@ -1,0 +1,76 @@
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow">
+                <div class="card-body p-4">
+                    <h2 class="text-center mb-4">
+                        <i class="fas fa-edit"></i> Edit Book
+                    </h2>
+
+                    <form action="/books/{{book._id}}?_method=PUT" method="POST">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="title" name="title" 
+                                   value="{{book.title}}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="author" class="form-label">Author <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="author" name="author" 
+                                   value="{{book.author}}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="genre" class="form-label">Genre <span class="text-danger">*</span></label>
+                            <select class="form-select" id="genre" name="genre" required>
+                                <option value="">Select a genre</option>
+                                {{
+#each
+ genres}}
+                                    <option value="{{this}}" {{
+#if
+ (eq this ../book.genre)}}selected{{
+/if
+}}>
+                                        {{this}}
+                                    </option>
+                                {{
+/each
+}}
+                            </select>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="isbn" class="form-label">ISBN</label>
+                                <input type="text" class="form-control" id="isbn" name="isbn" 
+                                       value="{{book.isbn}}">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="publicationYear" class="form-label">Publication Year</label>
+                                <input type="number" class="form-control" id="publicationYear" 
+                                       name="publicationYear" value="{{book.publicationYear}}" 
+                                       min="1000" max="2026">
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="notes" class="form-label">Personal Notes</label>
+                            <textarea class="form-control" id="notes" name="notes" rows="4">{{book.notes}}</textarea>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-save"></i> Update Book
+                            </button>
+                            <a href="/books/dashboard" class="btn btn-outline-secondary">
+                                <i class="fas fa-times"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

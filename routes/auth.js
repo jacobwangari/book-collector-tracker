@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const User = require('../models/User');
 const { ensureGuest } = require('../middleware/auth');
+console.log('ensureGuest:', ensureGuest);
 
 // Login page
 router.get('/login', ensureGuest, (req, res) => {

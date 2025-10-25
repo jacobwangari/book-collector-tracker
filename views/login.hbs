@@ -1,0 +1,74 @@
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg">
+                <div class="card-body p-5">
+                    <h2 class="text-center mb-4">
+                        <i class="fas fa-sign-in-alt"></i> Login to Your Library
+                    </h2>
+
+                    {{#if errors}}
+                        {{#each errors}}
+                            <div class="alert alert-danger">{{this.msg}}</div>
+                        {{/each}}
+                    {{/if}}
+
+                    <form action="/auth/login" method="POST">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email or Username</label>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                id="email" 
+                                name="email" 
+                                placeholder="Enter your email" 
+                                required
+                            >
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input 
+                                type="password" 
+                                class="form-control" 
+                                id="password" 
+                                name="password" 
+                                placeholder="Enter your password" 
+                                required
+                            >
+                        </div>
+
+                        <div class="mb-3 form-check">
+                            <input 
+                                type="checkbox" 
+                                class="form-check-input" 
+                                id="remember" 
+                                name="remember"
+                            >
+                            <label class="form-check-label" for="remember">Remember me</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 mb-3">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </button>
+                    </form>
+
+                    <div class="text-center mb-3">
+                        <span class="text-muted">or</span>
+                    </div>
+
+                    {{!-- <a href="/auth/github" class="btn btn-dark w-100">
+                        <i class="fab fa-github"></i> Login with GitHub
+                    </a> --}}
+
+                    <hr class="my-4">
+
+                    <p class="text-center mb-0">
+                        Don't have an account? 
+                        <a href="/auth/register" class="text-decoration-none fw-bold">Register here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
