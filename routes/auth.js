@@ -14,7 +14,7 @@ router.get('/login', ensureGuest, (req, res) => {
 // Login POST
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
-        successRedirect: '/dashboard',
+        successRedirect: '/books/dashboard',
         failureRedirect: '/auth/login',
         failureFlash: true
     })(req, res, next);
@@ -84,13 +84,13 @@ router.post('/register', async (req, res) => {
     }
 });
 
-// GitHub OAuth
-router.get('/github', passport.authenticate('github', { scope: ['user:email'] }));
+// Google OAuth
+router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-router.get('/github/callback',
-    passport.authenticate('github', { failureRedirect: '/auth/login' }),
+router.get('/google/callback',
+    passport.authenticate('google', { failureRedirect: '/auth/login' }),
     (req, res) => {
-        res.redirect('/dashboard');
+        res.redirect('/books/dashboard');
     }
 );
 

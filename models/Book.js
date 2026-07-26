@@ -49,9 +49,8 @@ const BookSchema = new mongoose.Schema({
 });
 
 // Update the updatedAt timestamp before saving
-BookSchema.pre('save', function(next) {
-    this.updatedAt = Date.now();
-    next();
+BookSchema.pre('save', async function() {
+    this.updatedAt = new Date();
 });
 
 module.exports = mongoose.model('Book', BookSchema);

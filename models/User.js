@@ -17,10 +17,10 @@ const UserSchema = new mongoose.Schema({
     password: {
         type: String,
         required: function() {
-            return !this.githubId; // Password required only if not using GitHub
+            return !this.googleId; // Password required only if not using GitHub
         }
     },
-    githubId: {
+    googleId: {
         type: String,
         unique: true,
         sparse: true
